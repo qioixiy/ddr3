@@ -118,3 +118,4 @@ module_init(cmos_init);
 module_exit(cmos_cleanup);
 
 
+MODULE_LICENSE("GPL");
