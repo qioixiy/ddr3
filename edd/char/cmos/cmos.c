@@ -6,6 +6,8 @@
 #include <asm/uaccess.h>
 #include <linux/pci.h>
 
+MODULE_LICENSE("Dual BSD/GPL");
+
 #define NUM_CMOS_BANKS 2
 
 struct cmos_dev {
@@ -52,11 +54,16 @@ int __init cmos_init(void)
 {
 	int i, ret;
 
+	printk("cmos_init");
+
 	if (alloc_chrdev_region(&cmos_dev_number, 0, NUM_CMOS_BANKS, DEVICE_NAME) < 0) {
 		printk(KERN_DEBUG "Can`t register device\n");
 		return -1;
 	}
 
+	return 0;
+
+	
 	for (i = 0; i < NUM_CMOS_BANKS; i++) {
 		cmos_devp[i] = kmalloc(sizeof(struct cmos_dev), GFP_KERNEL);
 		if (!cmos_devp[i]) {
@@ -117,5 +124,3 @@ void __exit cmos_cleanup()
 module_init(cmos_init);
 module_exit(cmos_cleanup);
 
-
-MODULE_LICENSE("GPL");
