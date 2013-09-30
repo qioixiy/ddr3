@@ -15,3 +15,14 @@
 *.exe
 *.out
 *.app
+
+*~
+.*
+*.ko.cmd
+*.mod.o.cmd
+Module.symvers
+*.ko
+*.mod.c
+modules.order
+*#
+.tmp_versions/
